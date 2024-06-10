@@ -42,7 +42,7 @@ class Category(Base):
     
     @classmethod
     def find_by_name(cls, name):
-        return session.query(cls).filter_by(name=name).first()
+        return session.query(cls).filter(cls.name.ilike(f'%{name}%')).first()
     
     @classmethod
     def total_categories(cls):
@@ -93,7 +93,7 @@ class Transaction(Base):
     
     @classmethod
     def find_by_description(cls, description):
-        return session.query(cls).filter_by(description=description).first()
+        return session.query(cls).filter(cls.description.ilike(f'%{description}%')).first()
     
     @classmethod
     def total_transactions(cls):
